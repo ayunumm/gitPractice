@@ -1,3 +1,1 @@
-#Initial
-
-# Hello från Ayumi!
+# Hello from Ayumi!
