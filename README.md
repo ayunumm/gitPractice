@@ -8,3 +8,12 @@
 - Use camelCase.
 - Newline in-between functions / scopes.
 - TODO: Name branch after ticket name.
+
+# Testing
+
+```
+cd scripts
+./run_tests.sh
+```
+or from wherever
+`/scripts/run_tests.sh`
