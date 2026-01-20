@@ -8,7 +8,7 @@ include(CTest)
 enable_testing()
 
 add_library(caseFeedback
-  src/test_lib.cc
+  src/test_lib.c
 )
 
 target_include_directories(caseFeedback PUBLIC ${PROJECT_SOURCE_DIR}/include)

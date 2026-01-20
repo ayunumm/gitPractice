@@ -1,5 +1,5 @@
 add_executable(caseFeedbackTests
-  tests.cc
+  tests.c
 )
 
 target_link_libraries(caseFeedbackTests
