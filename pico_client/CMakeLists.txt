@@ -1,26 +1,38 @@
-cmake_minimum_required(VERSION 3.16)
-project(caseFeedback LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-include(CTest)
-enable_testing()
-
-add_library(caseFeedback
-  src/test_lib.c
+add_executable(blink
+        src/main.c
 )
 
-target_include_directories(caseFeedback PUBLIC ${PROJECT_SOURCE_DIR}/include)
-include(FetchContent)
-
-FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+target_link_libraries(blink
+    pico_stdlib
 )
 
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+target_include_directories(blink
+    PRIVATE
+        ${PROJECT_SOURCE_DIR}/include
+)
 
-FetchContent_MakeAvailable(googletest)
+pico_add_extra_outputs(blink)
 
-add_subdirectory(tests)
+pico_enable_stdio_usb(blink 1)
+pico_enable_stdio_uart(blink 1)
+
+
+if(NOT PICO_PLATFORM)
+    include(CTest)
+    enable_testing()
+
+    include(FetchContent)
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+    )
+
+    add_library(caseFeedback
+      src/test_lib.c
+    )
+
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
+
+    add_subdirectory(tests)
+endif()
