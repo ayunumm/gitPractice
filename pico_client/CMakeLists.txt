@@ -1,17 +1,23 @@
 cmake_minimum_required(VERSION 3.16)
-project(caseFeedback LANGUAGES CXX)
+project(caseFeedback LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+cmake_policy(SET CMP0135 NEW)
 
 include(CTest)
 enable_testing()
 
-add_library(caseFeedback
+add_library(caseFeedback_lib
   src/test_lib.c
 )
 
-target_include_directories(caseFeedback PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(caseFeedback_lib PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+add_executable(caseFeedback
+  src/main.c
+)
+
+target_link_libraries(caseFeedback PRIVATE caseFeedback_lib)
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -20,7 +26,6 @@ FetchContent_Declare(
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
 FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(tests)
