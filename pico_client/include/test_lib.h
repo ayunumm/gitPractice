@@ -1,3 +1,11 @@
 #pragma once
 
-int add(int n, int m);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int add(int a, int b);
+
+#ifdef __cplusplus
+}
+#endif

@@ -1,20 +1,21 @@
-add_executable(blink
+add_executable(caseFeedback
         src/main.c
 )
 
-target_link_libraries(blink
+target_link_libraries(caseFeedback
     pico_stdlib
 )
 
-target_include_directories(blink
+target_include_directories(caseFeedback
     PRIVATE
         ${PROJECT_SOURCE_DIR}/include
 )
 
-pico_add_extra_outputs(blink)
+# target_link_libraries(caseFeedback PRIVATE caseFeedback_lib)
 
-pico_enable_stdio_usb(blink 1)
-pico_enable_stdio_uart(blink 1)
+pico_add_extra_outputs(caseFeedback)
+pico_enable_stdio_usb(caseFeedback 1)
+pico_enable_stdio_uart(caseFeedback 1)
 
 
 if(NOT PICO_PLATFORM)
