@@ -1,21 +1,24 @@
 add_executable(caseFeedback
         src/main.c
+	src/wifi.c
 )
 
 target_link_libraries(caseFeedback
     pico_stdlib
+    pico_cyw43_arch_lwip_threadsafe_background
 )
 
 target_include_directories(caseFeedback
     PRIVATE
-        ${PROJECT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 # target_link_libraries(caseFeedback PRIVATE caseFeedback_lib)
 
-pico_add_extra_outputs(caseFeedback)
 pico_enable_stdio_usb(caseFeedback 1)
 pico_enable_stdio_uart(caseFeedback 1)
+pico_add_extra_outputs(caseFeedback)
 
 
 if(NOT PICO_PLATFORM)

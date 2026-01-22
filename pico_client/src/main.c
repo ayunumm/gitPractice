@@ -1,3 +1,5 @@
+#include "wifi.h"
+
 #include <stdio.h>
 #include "pico/stdlib.h"
 
@@ -53,6 +55,9 @@ void uppdatera_lcd(int betyg) {
 }
 
 void initiera_allt() {
-    stdio_init_all();
     // Här lägger vi gpio_init osv.
+    stdio_init_all();
+
+    wifi_init();
+
 }

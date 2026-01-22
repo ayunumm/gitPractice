@@ -1,9 +1,7 @@
 #ifndef WIFI_H
 #define WIFI_H
 
-#include <stdbool.h>
+int wifi_init(void);
 
-bool wifi_init();
-bool wifi_connect(const char* ssid, const char* password);
 
 #endif
