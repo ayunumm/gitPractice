@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "test_lib.hh"
+#include "test_lib.h"
 
 TEST(caseFeedbackTest, add) {
   EXPECT_EQ(add(5, 5), 10);

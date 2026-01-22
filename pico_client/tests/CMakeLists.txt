@@ -1,10 +1,10 @@
 add_executable(caseFeedbackTests
-  tests.c
+  tests.cpp
 )
 
 target_link_libraries(caseFeedbackTests
   PRIVATE
-    caseFeedback
+    caseFeedback_lib
     GTest::gtest
     GTest::gtest_main
 )
