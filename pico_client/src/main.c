@@ -1,55 +1,58 @@
 #include <stdio.h>
+#include "pico/stdlib.h"
 
-// Vi deklarerar dessa här uppe, men fyller dem med innehåll senare eller i en annan fil
-void initiera_allt();
-int las_av_knappar();
-void skicka_till_thingspeak(int betyg);
-void uppdatera_lcd(int betyg);
+// --- FUNCTION PROTOTYPES ---
+// We declare these here, but implement them later or in other files
+void init_system(void);
+int read_buttons(void);
+void send_to_thingspeak(int rating);
+void update_lcd(int rating);
 
 int main() {
-    initiera_allt(); // Startar knappar, wifi, lcd
+    init_system(); // Starts buttons, WiFi, LCD
 
-    // "kontroll-loop"
+    // "Main control loop"
     while(1) {
-        // 1. Titta vilken knapp som trycks (returnerar 0 om ingen trycks, annars 1-5)
-        int betyg = las_av_knappar();
+        // 1. Check which button is pressed (returns 0 if none, otherwise 1-5)
+        int rating = read_buttons();
 
-        // Om vi faktiskt fick ett betyg (någon tryckte)
-        if (betyg > 0) {
-             printf("Betyg registrerat: %d\n", betyg);
+        // If we actually got a rating (someone pressed a button)
+        if (rating > 0) {
+             printf("Rating registered: %d\n", rating);
 
-             // 2. Skicka knapp-färg till databas/thinksspeak
-             skicka_till_thingspeak(betyg);
+             // 2. Send rating to database/ThingSpeak
+             send_to_thingspeak(rating);
 
-             // 3. Uppdatera status på LCD-Skärm
-             uppdatera_lcd(betyg);
+             // 3. Update status on LCD Screen
+             update_lcd(rating);
              
-             // Vänta lite så vi inte registrerar samma tryck flera gånger
+             // Debounce delay to avoid registering the same press multiple times
              sleep_ms(1000); 
         }
         
-        sleep_ms(50); // Sparar ström
+        sleep_ms(50); // Save power/CPU cycles
     }
     return 0;
 }
 
-// --- HÄR UNDER KAN DU SEDAN FYLLA PÅ MED DETALJERNA ---
+// --- IMPLEMENTATION DETAILS BELOW ---
+// (Your team members will fill these in)
 
-int las_av_knappar() {
-    // Här lägger vi for-loopen som kollar GPIO-pinnarna
-    // Returnera siffran 1-5 om en knapp trycks, annars 0
+int read_buttons() {
+    // Here we place the loop that checks GPIO pins
+    // Return integer 1-5 if a button is pressed, otherwise 0
     return 0; // Placeholder
 }
 
-void skicka_till_thingspeak(int betyg) {
-    // Här lägger vi WiFi-koden
+void send_to_thingspeak(int rating) {
+    // WiFi code goes here
 }
 
-void uppdatera_lcd(int betyg) {
-    // Här lägger vi LCD-koden
+void update_lcd(int rating) {
+    // LCD code goes here
 }
 
-void initiera_allt() {
+void init_system() {
     stdio_init_all();
-    // Här lägger vi gpio_init osv.
+    // GPIO init, WiFi init, etc. goes here
 }
