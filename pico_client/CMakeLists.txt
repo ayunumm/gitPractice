@@ -7,6 +7,7 @@ option(PICO_TESTS_BUILD "Build tests" OFF)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(PICO_BOARD pico_w)
 
 include(FetchContent)
 
@@ -23,27 +24,32 @@ endif()
 project(pico_client LANGUAGES C CXX ASM)
 
 if (PICO_BUILD)
-  set(PICO_BOARD pico_w)
   pico_sdk_init()
 
   # olle needs to set this for compiling on arch-linux
   set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 
   if (PICO_SDK_VERSION_STRING VERSION_LESS "1.3.0")
-      message(FATAL_ERROR "Raspberry Pi Pico version 1.3.0 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
+    message(FATAL_ERROR "Raspberry Pi Pico version 1.3.0 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
   endif()
 
   add_executable(pico_client
-          src/main.c
+    src/main.c
+    src/wifi.c
+    src/lcd.c
   )
 
   target_link_libraries(pico_client
-      pico_stdlib
+    pico_stdlib
+    pico_cyw43_arch_lwip_threadsafe_background
+    hardware_i2c
+    hardware_gpio
   )
 
   target_include_directories(pico_client
-      PRIVATE
+    PRIVATE
       ${CMAKE_CURRENT_SOURCE_DIR}/include
+      ${CMAKE_CURRENT_SOURCE_DIR}/src
   )
 
   pico_add_extra_outputs(pico_client)
@@ -56,8 +62,8 @@ if (PICO_TESTS_BUILD AND NOT PICO_BUILD)
   enable_testing()
 
   FetchContent_Declare(
-      googletest
-      URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
   )
 
   set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)

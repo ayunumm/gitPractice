@@ -1,5 +1,10 @@
+#include "wifi.h"
+
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "lcd.h"
+#include "hardware/i2c.h"
+#include "hardware/gpio.h"
 
 // --- FUNCTION PROTOTYPES ---
 // We declare these here, but implement them later or in other files
@@ -18,16 +23,17 @@ int main() {
 
         // If we actually got a rating (someone pressed a button)
         if (rating > 0) {
-             printf("Rating registered: %d\n", rating);
+            printf("Rating registered: %d\n", rating);
 
              // 2. Send rating to database/ThingSpeak
-             send_to_thingspeak(rating);
+            send_to_thingspeak(rating);
 
              // 3. Update status on LCD Screen
-             update_lcd(rating);
-             
+            update_lcd(rating);
+            
              // Debounce delay to avoid registering the same press multiple times
-             sleep_ms(1000); 
+            sleep_ms(1000); 
+
         }
         
         sleep_ms(50); // Save power/CPU cycles
@@ -53,6 +59,8 @@ void update_lcd(int rating) {
 }
 
 void init_system() {
+    // Här lägger vi gpio_init osv.
     stdio_init_all();
-    // GPIO init, WiFi init, etc. goes here
+
+    wifi_init();
 }
