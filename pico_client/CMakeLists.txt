@@ -37,6 +37,7 @@ if (PICO_BUILD)
     src/main.c
     src/wifi.c
     src/lcd.c
+    src/tcp_communication.c
   )
 
   target_link_libraries(pico_client

@@ -10,6 +10,9 @@ int wifi_init(void) {
 
 	cyw43_arch_enable_sta_mode();
 
+  /* change this -> CYW43_AUTH_OPEN to CYW43_AUTH_WPA2_AES_PSK if you're trying to
+   * connect to a home network.
+   */
 	if (cyw43_arch_wifi_connect_timeout_ms("jensen_guest", "passw", CYW43_AUTH_OPEN, 30000)){
 		printf("Anslutning misslyckades\n");
 		return -1;
