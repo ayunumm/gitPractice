@@ -9,11 +9,25 @@
 - Newline in-between functions / scopes.
 - TODO: Name branch after ticket name.
 
+# Building
+
+```
+./scripts/build.sh
+```
+or build manually
+```
+cmake -B build
+cmake --build build
+```
+
 # Testing
 
 ```
-cd scripts
-./run_tests.sh
+./scripts/run_tests.sh
 ```
-or from wherever
-`/scripts/run_tests.sh`
+or build manually
+```
+cmake -B build -DPICO_BUILD=OFF -DPICO_TESTS_BUILD=ON
+cmake --build build
+ctest --output-on-failure
+```
