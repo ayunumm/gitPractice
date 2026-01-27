@@ -10,6 +10,9 @@
 
 #include "secrets.h"
 
+#define THINGSPEAK_HOST "184.106.153.149"
+#define THINGSPEAK_PORT 80
+
 typedef struct 
 {
     struct altcp_pcb *pcb;

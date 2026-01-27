@@ -11,6 +11,7 @@ int read_buttons(void);
 void update_lcd(int rating);
 
 int main() {
+    sleep_ms(3000); 
     init_system(); 
     
     while(1) {
@@ -76,4 +77,6 @@ void init_system() {
     lcd_clear();
     lcd_set_cursor(0, 0);
     lcd_print("System Ready");
+
+    wifi_init();
 }

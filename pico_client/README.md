@@ -9,6 +9,20 @@
 - Newline in-between functions / scopes.
 - TODO: Name branch after ticket name.
 
+# Setup
+create the following file named secrets.h in the /include directory following the template below
+```
+#ifndef SECRETS_H
+#define SECRETS_H
+
+#define WIFI_SSID "SSID"
+#define WIFI_PASSWORD "PASS"
+
+#define THINGSPEAK_API_KEY "MYAPIKEY"
+
+#endif // SECRETS_H
+```
+
 # Building
 
 ```
