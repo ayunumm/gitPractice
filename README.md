@@ -1,5 +1,3 @@
-# caseFeedback
-
 # Policies
 
 - Always branch when adding a feature / fixing bugs.
