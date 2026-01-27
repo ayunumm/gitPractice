@@ -10,7 +10,7 @@ int wifi_init(void) {
 
 	cyw43_arch_enable_sta_mode();
 
-	if (cyw43_arch_wifi_connect_timeout_ms("jensen_guest", "passw", CYW43_AUTH_OPEN, 30000)){
+	if (cyw43_arch_wifi_connect_timeout_ms("JENSEN-Guest", "pwd", CYW43_AUTH_WPA2_AES_PSK, 40000)){
 		printf("Anslutning misslyckades\n");
 		return -1;
 	} else {

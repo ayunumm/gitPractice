@@ -81,5 +81,5 @@ void init_system() {
     lcd_set_cursor(0, 0);
     lcd_print("System Ready");
 
-    //wifi_init();
+    wifi_init();
 }
