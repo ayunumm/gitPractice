@@ -10,3 +10,8 @@
 - TODO: Name branch after ticket name.
 
 
+## pico_client
+firmware for pico pi w.
+
+## viewer
+Web-based application for viewing the results of button presses.
