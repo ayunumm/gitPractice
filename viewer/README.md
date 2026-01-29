@@ -1,5 +1,8 @@
 # Feedback Viewer
 
+## showcase
+![](/viewer/showcase-viewer.png)
+
 ## Setup
 create a secrets.json in viewer/
 ```
